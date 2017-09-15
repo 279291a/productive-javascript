@@ -1,0 +1,11 @@
+logs
+*.log
+npm-debug.log*
+
+build
+coverage
+node_modules
+dist
+
+.idea
+.vscode
