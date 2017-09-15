@@ -55,3 +55,12 @@ const b = new User2('w','xl');
 
 console.log(a instanceof User2);
 console.log(b instanceof User2);
+
+function UserAnother(name,passwordHash){
+  this.toString = function(){
+    return `[name${name}]`;
+  }
+  this.checkPassword = function(password){
+    return hash(password) === passwordHash
+  }
+}
