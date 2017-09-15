@@ -64,3 +64,32 @@ function UserAnother(name,passwordHash){
     return hash(password) === passwordHash
   }
 }
+
+function Tree(x){
+  this.value = x;
+  this.children = [];
+}
+
+Tree.prototype = {
+  // children:[],
+  addChild:function(x){
+    this.children.push(x);
+  }
+}
+
+let left = new Tree(2);
+left.addChild(1);
+left.addChild(3);
+
+console.log(`left: ${left}`);
+
+let right = new Tree(6);
+right.addChild(5);
+right.addChild(7);
+console.log(`right: ${right}`);
+
+let top = new Tree(4);
+top.addChild(left);
+top.addChild(right);
+
+console.log(top);
