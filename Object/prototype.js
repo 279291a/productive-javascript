@@ -37,19 +37,6 @@ const x = User1('w','xl');
 const y = new User1('w','xl');
 
 console.log(x instanceof User1);
-console.log(y instanceof User1);function User1(name, passwordHash) {
-  if(!(this instanceof User1)){
-    return new User1(name,passwordHash);
-  }
-
-  this.name = name;
-  this.passwordHash = passwordHash;
-}
-
-const x = User1('w','xl');
-const y = new User1('w','xl');
-
-console.log(x instanceof User1);
 console.log(y instanceof User1);
 
 //②
