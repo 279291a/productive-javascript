@@ -42,8 +42,12 @@ function Actor(scene, x, y) {
   this.scene = scene;
   this.x = x;
   this.y = y;
+  // this.id = ++Actor.nextID;
+  this.actorId = ++Actor.nextID;
   scene.register(this);
 }
+
+Actor.nextID = 0;
 
 Actor.prototype.moveTo = (x, y) => {
   this.x = x;
@@ -81,3 +85,16 @@ SpaceShip.prototype.right = () => {
   const maxWidth = this.scene.width - this.width();
   this.moveTo(Math.min(this.x + 10, maxWidth), this.y);
 };
+
+function Alien(scene, x, y, direction, speed, strength) {
+  Actor.call(this, scene, x, y);
+  this.direction = direction;
+  this.speed = speed;
+  this.strength = strength;
+  this.damage = 0;
+  // this.id = ++Alien.nextID; // conflicts with actor id!
+  this.alienId = ++Alien.nextID; // 来自alienId
+}
+
+Alien.nextID = 0;
+
