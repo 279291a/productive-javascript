@@ -114,3 +114,28 @@ Object.defineProperty(Object.prototype,'allKeys',{
   enumerable:false,
   configurable:false
 })
+
+function WorkSet() {
+  this.entries = new Dict();
+  this.count = 0;
+}
+
+WorkSet.prototype.isEmpty = () => this.count === 0;
+
+WorkSet.prototype.add = (key, val) => {
+  if (this.entries.has(key)) {
+    return;
+  }
+  this.entries.set(key, val);
+  this.count++;
+};
+
+WorkSet.prototype.get = key => this.entries.get(key);
+
+WorkSet.prototype.remove = (key) => {
+  if (!this.entries.has(key)) {
+    return;
+  }
+  this.entries.remove(key);
+  this.count--;
+};
