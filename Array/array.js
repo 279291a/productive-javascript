@@ -64,4 +64,40 @@ function takeWhile(a, pred) {
   }
   return result;
 }
+var prefix = takeWhile([1,2,4,9,44,21,2,6],function(n){
+  return n<10;
+});
 
+console.log(prefix);
+
+//使用forEach 来实现takeWhile函数将会是一个尴尬的尝试
+function takeWhile2(a, pred) {
+  const result = [];
+  a.forEach(function(x,i){
+    if(!pred(x)){
+      break;
+    }
+    result[i] = x;
+  })
+  return result;
+}
+
+//使用内部一场来提前终止该循环，但是这既尴尬又效率低下
+
+function takeWhile3(a,pred){
+  var result = [];
+  var earlyExit = {};
+  try{
+    a.forEach(function(x,i){
+      if(!pred(x)){
+        throw earlyExit;
+      }
+      result[i]= x;
+    });
+  } catch(e){
+    if( e!== earlyExit){
+      throw e;
+    }
+  }
+  return result;
+}
