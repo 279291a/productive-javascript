@@ -82,7 +82,7 @@ function takeWhile2(a, pred) {
   return result;
 }
 
-//使用内部一场来提前终止该循环，但是这既尴尬又效率低下
+//使用内部异常来提前终止该循环，但是这既尴尬又效率低下
 
 function takeWhile3(a,pred){
   var result = [];
@@ -99,5 +99,18 @@ function takeWhile3(a,pred){
       throw e;
     }
   }
+  return result;
+}
+
+//使用every  来实现takeWhile 函数
+function takeWhile4(a,pred){
+  var result = [];
+  a.every(function(x,i){
+    if(!pred(x)){
+      return false;   //break
+    }
+    result[i] = x;
+    return true; //continue
+  });
   return result;
 }
