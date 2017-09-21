@@ -139,3 +139,67 @@ WorkSet.prototype.remove = (key) => {
   this.entries.remove(key);
   this.count--;
 };
+
+Dict.prototype.pick = () =>{
+  for(const key in this.elements){
+    if(this.has(key)){
+      return key;
+    }
+  }
+  throw new Error('empty dictionary')
+}
+
+WorkSet.prototype.pick = () =>{
+  return this.entries.pick();
+}
+
+function Member(name) {
+  this.name = name;
+  this.friends = [];
+}
+
+const a = new Member('alice');
+const b = new Member('Bob');
+const c = new Member('carol');
+const d = new Member('dieter');
+const e = new Member('eli');
+const f = new Member('fatima');
+
+a.friends.push(b);
+b.friends.push(c);
+c.friends.push(e);
+d.friends.push(b);
+e.friends.push(d, f);
+
+Member.prototype.inNetwork = (other) =>{
+  let visited = {};
+  let worklist = [this];
+
+  while(worklist.length > 0){
+    const member = worklist.pop();
+    if(member.name in visited){
+      continue;
+    }
+    visited[member.name] = member;
+    if(member === other){
+      return true;
+    }
+    member.friends.foreach((friend) => {
+      worklist.push(friend)
+    });
+
+    return false;
+  }
+  // workset.add(this.name , this);
+  // while(!workset.isEmpty()){
+  //   const name = workset.pick();
+  //   const member = workset.get(name);
+  //   workset.remove(name);
+
+  //   if(name in visited){
+  //     continue;
+  //   }
+  // }
+}
+
+console.log(a.inNetwork(f));
