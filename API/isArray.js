@@ -11,3 +11,7 @@ function isArray(arg) {
 }
 
 console.log(isArray(x));
+
+MyClass.prototype.update = () => {
+  this.keys.add([].slice.call(arguments));
+};
