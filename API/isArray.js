@@ -3,3 +3,4 @@
 const x = [];
 
 console.log(x instanceof Array);
+console.log(Array.isArray(x));
